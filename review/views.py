@@ -220,9 +220,6 @@ class UserLikedReviewsView(APIView):
                 "review_id": review.id,
                 "book_title": review.book.title,
                 "isbn": review.book.isbn,
-                "rating": review.rating,
-                "content": review.content[:50],  # 짧은 내용 표시
-                "created_at": review.created_at.strftime('%Y-%m-%d %H:%M:%S'),
                 "likes_count": review.likes.count()
             }
             for review in liked_reviews
