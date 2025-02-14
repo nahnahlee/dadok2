@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from .views import (
     ReviewViewSet, LikeReviewView, CommentView, CommentListView,
-    RecentReviewView, MyLibraryView, BookReviewsView, StarIconsView, HeartIconsView, IconsView
+    RecentReviewView, MyLibraryView, BookReviewsView, StarIconsView, HeartIconsView, IconsView, UserLikedReviewsView
 )
 
 router = DefaultRouter()
@@ -27,7 +27,10 @@ urlpatterns = [
 
     path('hearts/', HeartIconsView.as_view(), name='heart_icons'),  # ❤️ 좋아요(하트) 아이콘
 
-    path('icons/', IconsView.as_view(), name='icons')
+    path('icons/', IconsView.as_view(), name='icons'),
+
+    # ✅ 유저가 좋아요를 누른 리뷰 목록 조회
+    path('liked/', UserLikedReviewsView.as_view(), name='liked_reviews')
 ]
 
 urlpatterns += router.urls

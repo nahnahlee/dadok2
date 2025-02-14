@@ -206,3 +206,26 @@ class IconsView(APIView):
             "arrow": f"{settings.MEDIA_URL}icons/arrow_seeall.svg",
             "edit": f"{settings.MEDIA_URL}icons/edit_emoji.svg"
         })
+
+
+class UserLikedReviewsView(APIView):
+    """ 현재 로그인한 유저가 좋아요를 누른 리뷰 목록 조회 """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        liked_reviews = Review.objects.filter(likes__user=request.user).order_by("-created_at")
+
+        data = [
+            {
+                "review_id": review.id,
+                "book_title": review.book.title,
+                "isbn": review.book.isbn,
+                "rating": review.rating,
+                "content": review.content[:50],  # 짧은 내용 표시
+                "created_at": review.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                "likes_count": review.likes.count()
+            }
+            for review in liked_reviews
+        ]
+
+        return Response(data, status=status.HTTP_200_OK)
