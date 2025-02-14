@@ -25,7 +25,7 @@ urlpatterns = [
     # ✅ 별점 이미지 URL 제공
     path('stars/', StarIconsView.as_view(), name='star_icons'),
 
-    path('hearts/', HeartIconsView.as_view(), name='heart_icons'), # ❤️ 좋아요(하트) 아이콘
+    path('hearts/', HeartIconsView.as_view(), name='heart_icons'),  # ❤️ 좋아요(하트) 아이콘
 
     path('icons/', IconsView.as_view(), name='icons')
 ]

@@ -7,7 +7,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'nickname', 'email', 'profile_image']
+        fields = ['id', 'username', 'password', 'nickname', 'email', 'profile_image']
         extra_kwargs = {
             'profile_image': {'required': False}  # ✅ 프로필 이미지 필수 입력이 아님
         }
